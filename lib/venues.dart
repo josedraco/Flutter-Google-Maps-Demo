@@ -57,8 +57,7 @@ class _GoogleMaps extends State<GoogleMaps> {
         address2: 'Sydney NSW 2000, Australia',
         lat: '-33.856159',
         long: '151.215256',
-        imageUrl:
-            'https://www.planetware.com/photos-large/AUS/australia-sydney-opera-house-2.jpg'));
+        imageUrl:'https://www.planetware.com/photos-large/AUS/australia-sydney-opera-house-2.jpg'));
     locations.add(Location(
         id: 2,
         name: 'Sydney Harbour Bridge',
@@ -66,8 +65,7 @@ class _GoogleMaps extends State<GoogleMaps> {
         address2: 'Sydney NSW, Australia',
         lat: '-33.857013',
         long: '151.207694',
-        imageUrl:
-            'https://www.planetware.com/photos-large/AUS/australia-sydney-harbour-bridge.jpg'));
+        imageUrl:'https://www.planetware.com/photos-large/AUS/australia-sydney-harbour-bridge.jpg'));
     super.initState();
   }
 
@@ -144,9 +142,7 @@ class _GoogleMaps extends State<GoogleMaps> {
             new Container(
               margin: const EdgeInsets.only(top: 25.0),
               child: new Center(
-                child: new Text(
-                  "Loading.. please wait...",
-                ),
+                child: new Text("Loading.. please wait...", ),
               ),
             ),
           ]));

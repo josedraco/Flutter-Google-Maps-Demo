@@ -17,8 +17,7 @@ class _VenueDetailState extends State<VenueDetails> {
     if (Theme.of(context).platform == TargetPlatform.android) {
       final AndroidIntent intent = new AndroidIntent(
           action: 'action_view',
-          data:
-              "http://maps.google.com/maps?daddr=${widget.location.lat},${widget.location.long}",
+          data: "http://maps.google.com/maps?daddr=${widget.location.lat},${widget.location.long}",
           package: 'com.google.android.apps.maps');
       intent.launch();
     }

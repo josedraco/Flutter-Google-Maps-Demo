@@ -23,3 +23,4 @@ class Location {
       this.phone,
       this.imageUrl});
 }
+
