@@ -14,7 +14,7 @@ dev_dependencies:
     sdk: flutter
   google_maps_flutter:
     git: 
-      url: git://github.com/gerryhigh/plugins
+      url: git://github.com/flutter/plugins
       path: packages/google_maps_flutter
   android_intent: "^0.2.1"
 
