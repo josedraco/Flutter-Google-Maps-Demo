@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:android_intent/android_intent.dart';
 import 'package:maps_demo/location.dart';
+import 'package:maps_demo/lugares.dart';
 
 class VenueDetails extends StatefulWidget {
-  final Location location;
+  final Lugar location;
   final ValueChanged<bool> onChanged;
 
   VenueDetails(this.location, this.onChanged);
@@ -17,7 +18,7 @@ class _VenueDetailState extends State<VenueDetails> {
     if (Theme.of(context).platform == TargetPlatform.android) {
       final AndroidIntent intent = new AndroidIntent(
           action: 'action_view',
-          data: "http://maps.google.com/maps?daddr=${widget.location.lat},${widget.location.long}",
+          data: "http://maps.google.com/maps?daddr=${widget.location.latitud},${widget.location.longitud}",
           package: 'com.google.android.apps.maps');
       intent.launch();
     }
@@ -54,18 +55,13 @@ class _VenueDetailState extends State<VenueDetails> {
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-                  child: Text(widget.location.address1,
-                      style: new TextStyle(fontSize: 16.0)),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-                  child: Text(widget.location.address2,
+                  child: Text(widget.location.situacion,
                       style: new TextStyle(fontSize: 16.0)),
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
                   child: Text(
-                      'LAT: ${widget.location.lat} LON: ${widget.location.long}',
+                      'LAT: ${widget.location.latitud} LON: ${widget.location.longitud}',
                       style: new TextStyle(fontSize: 16.0)),
                 ),
                 Material(
@@ -78,12 +74,12 @@ class _VenueDetailState extends State<VenueDetails> {
                     onPressed: _launchNavigationInGoogleMaps,
                     //Navigator.of(context).pushNamed(HomePage.tag);
                     color: Colors.lightBlueAccent,
-                    child: Text('Directions',
+                    child: Text('Como llegar',
                         style: TextStyle(color: Colors.white)),
                   ),
                 ),
                 Image.network(
-                  widget.location.imageUrl,
+                  widget.location.picture,
                   width: 300.0,
                   height: 300.0,
                 )

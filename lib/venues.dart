@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_demo/venue_details.dart';
-import 'package:maps_demo/location.dart';
+//import 'package:maps_demo/location.dart';
+import 'package:maps_demo/lugares.dart';
 
 class Venues extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(title: const Text("Sydney")),
+      appBar: AppBar(title: const Text("Palacios Aviles")),
       body: GoogleMaps(),
     );
   }
@@ -25,7 +26,8 @@ class _GoogleMaps extends State<GoogleMaps> {
   GoogleMapOptions _options;
   bool _isMoving;
   GoogleMapOverlayController mapOverlayController;
-  List<Location> locations = List<Location>();
+
+ // List<Lugar> locations = List<Lugar>();
 
   @override
   void didUpdateWidget(GoogleMaps oldWidget) {
@@ -50,22 +52,9 @@ class _GoogleMaps extends State<GoogleMaps> {
 
   @override
   void initState() {
-    locations.add(Location(
-        id: 1,
-        name: 'Sydney Opera House',
-        address1: 'Bennelong Point',
-        address2: 'Sydney NSW 2000, Australia',
-        lat: '-33.856159',
-        long: '151.215256',
-        imageUrl:'https://www.planetware.com/photos-large/AUS/australia-sydney-opera-house-2.jpg'));
-    locations.add(Location(
-        id: 2,
-        name: 'Sydney Harbour Bridge',
-        address1: '',
-        address2: 'Sydney NSW, Australia',
-        lat: '-33.857013',
-        long: '151.207694',
-        imageUrl:'https://www.planetware.com/photos-large/AUS/australia-sydney-harbour-bridge.jpg'));
+
+    //locations.addAll(Lugar);
+
     super.initState();
   }
 
@@ -90,13 +79,15 @@ class _GoogleMaps extends State<GoogleMaps> {
     // add delay so overlay is positioned correctly
     await new Future<Null>.delayed(new Duration(milliseconds: 20));
 
+    //print (double.parse(locations[0].latitud));
+
     mapOverlayController = GoogleMapOverlayController.fromSize(
       width: mq.size.width,
       height: mq.size.height,
       options: GoogleMapOptions(
         cameraPosition: CameraPosition(
           target: LatLng(
-              double.parse(locations[0].lat), double.parse(locations[0].long)),
+              double.parse(locations[0].latitud), double.parse(locations[0].longitud)),
           zoom: 15.0,
         ),
         trackCameraPosition: true,
@@ -105,10 +96,11 @@ class _GoogleMaps extends State<GoogleMaps> {
     mapOverlayController.mapController.addListener(_onMapChanged);
     locations.forEach((loc) {
       mapOverlayController.mapController.addMarker(MarkerOptions(
-          zIndex: loc.id.toDouble(),
-          position: LatLng(double.parse(loc.lat), double.parse(loc.long)),
+          zIndex: double.parse(loc.id),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen), //para poner el color a las marcas
+          position: LatLng(double.parse(loc.latitud), double.parse(loc.longitud)),
           infoWindowText:
-              InfoWindowText(loc.name, loc.address1 + ', ' + loc.address2)));
+              InfoWindowText(loc.name, loc.situacion)));
     });
 
     mapOverlayController.mapController.onInfoWindowTapped.add((Marker marker) {
@@ -134,7 +126,7 @@ class _GoogleMaps extends State<GoogleMaps> {
               height: 150.0,
               width: 150.0,
               child: new CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.redAccent),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                 value: null,
                 strokeWidth: 7.0,
               ),
@@ -142,7 +134,7 @@ class _GoogleMaps extends State<GoogleMaps> {
             new Container(
               margin: const EdgeInsets.only(top: 25.0),
               child: new Center(
-                child: new Text("Loading.. please wait...", ),
+                child: new Text("Cargando.. por favor, espere...", ),
               ),
             ),
           ]));
