@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Google Maps Demo',
+      title: 'Palacios Aviles',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Google Maps Demo'),
+      home: new MyHomePage(title: 'Palacios Aviles'),
     );
   }
 }
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => Venues()));
                   },
                   color: Colors.lightBlueAccent,
-                  child: Text('Venues', style: TextStyle(color: Colors.white)),
+                  child: Text('Palacios', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ),
